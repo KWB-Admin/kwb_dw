@@ -1,0 +1,22 @@
+version: 2
+models:
+  - name: fact_historical_water_levels
+    description: Historical water levels
+    columns:
+      - name: state_well_number
+        description: The primary key for this table
+        data_type: text
+        data_tests:
+          - not_null
+      - name: reading_date
+        description: Date when level was read
+        data_type: date
+      - name: ground_level
+        description: Measured in feet
+        data_type: real
+      - name: depth_to_water
+        description: Depth of water in feet
+        data_type: real
+      - name: ground_water_elevetion
+        description: Ground level - depth to water, measured in feet
+        data_type: real
