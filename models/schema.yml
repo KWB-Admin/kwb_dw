@@ -1,5 +1,37 @@
 version: 2
+
 models:
+  - name: fact_water_quality_data
+    columns:
+      - name: state_well_number
+        date_type: text
+        data_tests:
+          - not_null
+      - name: sample_id
+        date_type: text
+      - name: sample_date
+        date_type: date
+        data_tests:
+          - not_null
+      - name: test_method
+        date_type: text
+      - name: lab
+        date_type: text
+      - name: analyte
+        date_type: text
+        data_tests:
+          - not_null
+      - name: raw_lab_result
+        date_type: text
+      - name: quantitative_result
+        date_type: real
+      - name: units
+        date_type: text
+      - name: maximum_contaminant_limit
+        date_type: text
+      - name: lab_comment
+        date_type: text
+
   - name: fact_historical_water_levels
     description: Historical water levels
     columns:

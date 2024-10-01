@@ -12,7 +12,7 @@ with wq_data as (
         units,
         maximum_contaminant_limit,
         lab_comment
-    from stg_fact_historical_water_quality_lab_results
+    from {{ ref('stg_historical_water_quality_lab_results') }}
 ),
 
 results_recast as (

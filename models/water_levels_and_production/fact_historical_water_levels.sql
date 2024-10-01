@@ -6,7 +6,7 @@ with mon_well as (
         ground_level,
         top_screen,
         bottom_screen
-    from dim_well
+    from {{ ref('stg_dim_wells') }}
     where well_type = 'Monitoring'
         and status = 'Active'
 ),
@@ -20,7 +20,7 @@ metro_data as (
             else depth_to_water
         end as depth_to_water,
         'metro' as source
-    from stg_metro_2020_2024_water_depth
+    from {{ ref('stg_metro_water_depth') }}
 ),
 
 sems_data as (
@@ -33,7 +33,7 @@ sems_data as (
             else dtgw
         end as depth_to_water,
         'sems' as source
-    from stg_historical_water_depth_sems_pre_2020
+    from {{ ref('stg_fact_sems_water_depth') }}
     where water_levels_read_date < cast('2019-01-02' as date)
 ),
 
