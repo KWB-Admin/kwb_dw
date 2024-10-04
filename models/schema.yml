@@ -9,24 +9,32 @@ models:
           - not_null
       - name: sample_id
         date_type: text
+        description: ID of sample (provided and used by Lab)
       - name: sample_date
         date_type: date
+        description: Date water was sampled
         data_tests:
           - not_null
       - name: test_method
         date_type: text
+        description: Method used to test sample for analyte
       - name: lab
         date_type: text
+        description: Lab that conducted the test
       - name: analyte
         date_type: text
+        description: Consituent (organic, metal, etc) tested for
         data_tests:
           - not_null
       - name: raw_lab_result
         date_type: text
+        description: Result as provided by lab (contains mixed type)
       - name: quantitative_result
         date_type: real
+        description: Numerical results casted into corrected type
       - name: units
         date_type: text
+        description: Unit of measurement used, different for each analyte
       - name: maximum_contaminant_limit
         date_type: text
       - name: lab_comment
@@ -36,7 +44,6 @@ models:
     description: Historical water levels
     columns:
       - name: state_well_number
-        description: The primary key for this table
         data_type: text
         data_tests:
           - not_null
@@ -44,10 +51,10 @@ models:
         description: Date when level was read
         data_type: date
       - name: ground_level
-        description: Measured in feet
+        description: Feet above sea level, measured in feet
         data_type: real
       - name: depth_to_water
-        description: Depth of water in feet
+        description: Depth of water from wellhead, measured in feet
         data_type: real
       - name: ground_water_elevetion
         description: Ground level - depth to water, measured in feet
