@@ -2,7 +2,7 @@
 
 with source as (
     select *
-    from {{ source('raw', 'wells') }}
+    from {{ source('facilities_ops', 'wells') }}
 )
 
 select *

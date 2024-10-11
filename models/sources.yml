@@ -1,9 +1,9 @@
 version: 2
 
 sources:
-  - name: raw
+  - name: facilities_ops
     database: kwb  
-    schema: raw  
+    schema: facilities_ops  
     tables:
         - name: basins
           description: Table containing recharge basin information
@@ -28,7 +28,7 @@ sources:
             - name: program 
               date_type: text
 
-        - name: key_zones
+        - name: grazing_zones
           columns:
             - name: zone_name
               date_type: text
@@ -104,7 +104,7 @@ sources:
             - name: notes
               date_type: text
 
-        - name: historical_graging_values
+        - name: fact_grazing
           columns:
             - name: grazer
               date_type: text
@@ -117,7 +117,7 @@ sources:
             - name: comments
               date_type: text
 
-        - name: historical_rainfall_values
+        - name: fact_rainfall
           columns:
             - name: well
               date_type: text
@@ -131,6 +131,10 @@ sources:
               date_type: double precision
 
 
+  - name: water_quality
+    database: kwb  
+    schema: water_quality  
+    tables:
         - name: historical_water_quality_lab_results
           columns:
             - name: state_well_number
@@ -153,8 +157,14 @@ sources:
               date_type: text
             - name: lab_comment
               date_type: text
+        - name: bsk_lab_results
+        - name: eurofins_lab_results_from_pdfs
 
-        - name: historical_water_depth_values_sems_pre_2020
+  - name: kcwa
+    database: kwb  
+    schema: kcwa  
+    tables:
+        - name: historical_sems_data_pre_2020
           columns:
             - name: state_well_number
               date_type: text

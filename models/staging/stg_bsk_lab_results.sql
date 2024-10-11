@@ -2,7 +2,7 @@
 
 with source as (
     select *
-    from {{ source('kcwa', 'historical_sems_data_pre_2020') }}
+    from {{ source('water_quality', 'bsk_lab_results') }}
 )
 
 select *

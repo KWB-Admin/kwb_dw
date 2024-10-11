@@ -2,7 +2,7 @@
 
 with source as (
     select *
-    from {{ source('raw', 'historical_water_quality_lab_results') }}
+    from {{ source('water_quality', 'historical_water_quality_lab_results') }}
 )
 
 select *
