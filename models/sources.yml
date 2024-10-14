@@ -9,126 +9,126 @@ sources:
           description: Table containing recharge basin information
           columns:
             - name: id 
-              date_type: bigint
+              data_type: bigint
             - name: date_added 
-              date_type: date
+              data_type: date
             - name: basin_id 
-              date_type: text
+              data_type: text
               description: Alphanumeric ID used by Operations, Primary Key
             - name: construction_year 
-              date_type: integer
+              data_type: integer
               description: Year recharge basin was contructed
             - name: acres 
-              date_type: real
+              data_type: real
               description: Area in acres of basin
             - name: surface_elevation 
-              date_type: real
+              data_type: real
             - name: sector 
-              date_type: text
+              data_type: text
             - name: program 
-              date_type: text
+              data_type: text
 
         - name: grazing_zones
           columns:
             - name: zone_name
-              date_type: text
+              data_type: text
             - name: zone_desc
-              date_type: text
+              data_type: text
             - name: acres
-              date_type: real
+              data_type: real
 
         - name: pump_stations
           columns:
             - name: pump_station_name
-              date_type: text
+              data_type: text
             - name: pump_horsepower
-              date_type: real
+              data_type: real
             - name: lat
-              date_type: real
+              data_type: real
             - name: lon
-              date_type: real
+              data_type: real
 
         - name: staff
           columns:
             - name: first_name
-              date_type: text
+              data_type: text
             - name: last_name
-              date_type: text
+              data_type: text
             - name: phone_number
-              date_type: text
+              data_type: text
             - name: email
-              date_type: text
+              data_type: text
 
         - name: wells
           columns:
             - name: id
-              date_type: bigint
+              data_type: bigint
             - name: date_added
-              date_type: timestamp without time zone
+              data_type: timestamp without time zone
             - name: state_well_num
-              date_type: text
+              data_type: text
             - name: permit_num
-              date_type: text
+              data_type: text
             - name: year_built
-              date_type: integer
+              data_type: integer
             - name: well_type
-              date_type: text
+              data_type: text
             - name: status
-              date_type: text
+              data_type: text
             - name: lat
-              date_type: real
+              data_type: real
             - name: lon
-              date_type: real
+              data_type: real
             - name: township
-              date_type: text
+              data_type: text
             - name: range
-              date_type: text
+              data_type: text
             - name: section
-              date_type: integer
+              data_type: integer
             - name: ground_level
-              date_type: real
+              data_type: real
             - name: total_depth
-              date_type: real
+              data_type: real
             - name: bowl_depth
-              date_type: real
+              data_type: real
             - name: top_screen
-              date_type: real
+              data_type: real
             - name: bottom_screen
-              date_type: real
+              data_type: real
             - name: casing_diameter
-              date_type: real
+              data_type: real
             - name: motor_hp
-              date_type: real
+              data_type: real
             - name: testing_group
-              date_type: text
+              data_type: text
             - name: notes
-              date_type: text
+              data_type: text
 
         - name: fact_grazing
           columns:
             - name: grazer
-              date_type: text
+              data_type: text
             - name: reporting_date
-              date_type: date
+              data_type: date
             - name: area
-              date_type: text
+              data_type: text
             - name: number_of_animal_units
-              date_type: integer
+              data_type: integer
             - name: comments
-              date_type: text
+              data_type: text
 
         - name: fact_rainfall
           columns:
             - name: well
-              date_type: text
+              data_type: text
             - name: day
-              date_type: integer
+              data_type: integer
             - name: month
-              date_type: integer
+              data_type: integer
             - name: year
-              date_type: integer
+              data_type: integer
             - name: rain_measurement
-              date_type: double precision
+              data_type: double precision
 
 
   - name: water_quality
@@ -138,25 +138,25 @@ sources:
         - name: historical_water_quality_lab_results
           columns:
             - name: state_well_number
-              date_type: text
+              data_type: text
             - name: sample_id
-              date_type: text
+              data_type: text
             - name: sample_date
-              date_type: date
+              data_type: date
             - name: test_method
-              date_type: text
+              data_type: text
             - name: lab
-              date_type: text
+              data_type: text
             - name: analyte
-              date_type: text
+              data_type: text
             - name: lab_result
-              date_type: text
+              data_type: text
             - name: units
-              date_type: text
+              data_type: text
             - name: maximum_contaminant_limit
-              date_type: text
+              data_type: text
             - name: lab_comment
-              date_type: text
+              data_type: text
         - name: bsk_lab_results
         - name: eurofins_lab_results_from_pdfs
 
@@ -167,35 +167,35 @@ sources:
         - name: historical_sems_data_pre_2020
           columns:
             - name: state_well_number
-              date_type: text
+              data_type: text
             - name: well_name
-              date_type: text
+              data_type: text
             - name: mon_depth
-              date_type: text
+              data_type: text
             - name: point_x
-              date_type: real
+              data_type: real
             - name: point_y
-              date_type: real
+              data_type: real
             - name: water_levels_read_date
-              date_type: date
+              data_type: date
             - name: gwelev
-              date_type: real
+              data_type: real
             - name: rpelev
-              date_type: real
+              data_type: real
             - name: dtgw
-              date_type: real
+              data_type: real
             - name: gselev
-              date_type: real
+              data_type: real
             - name: rp_to_ws
-              date_type: real
+              data_type: real
 
         - name: metro_water_depths_post_2020
           columns:
             - name: state_well_number
-              date_type: text
+              data_type: text
             - name: reading_date
-              date_type: date
+              data_type: date
             - name: depth_to_water
-              date_type: real
+              data_type: real
 
 
