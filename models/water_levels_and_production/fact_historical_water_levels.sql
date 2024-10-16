@@ -49,7 +49,7 @@ final as (
         cast(reading_date as date) as reading_date,
         mon_well.ground_level,
         depth_to_water,
-        coalesce(mon_well.ground_level - depth_to_water) as ground_water_elevetion,
+        coalesce(mon_well.ground_level - depth_to_water) as ground_water_elevation,
         source
     from mon_well
         left join unioned_data 
