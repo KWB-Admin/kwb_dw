@@ -2,7 +2,7 @@
 
 with source as (
     select *
-    from {{ source('kcwa', 'metro_water_depths_post_2020') }}
+    from {{ source('kcwa', 'metro_water_levels_post_2020') }}
 )
 
 select *

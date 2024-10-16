@@ -164,7 +164,7 @@ sources:
     database: kwb  
     schema: kcwa  
     tables:
-        - name: historical_sems_data_pre_2020
+        - name: historical_sems_water_levels_pre_2020
           columns:
             - name: state_well_number
               data_type: text
@@ -189,7 +189,7 @@ sources:
             - name: rp_to_ws
               data_type: real
 
-        - name: metro_water_depths_post_2020
+        - name: metro_water_levels_post_2020
           columns:
             - name: state_well_number
               data_type: text

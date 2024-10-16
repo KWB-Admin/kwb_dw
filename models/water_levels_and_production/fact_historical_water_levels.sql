@@ -20,7 +20,7 @@ metro_data as (
             else depth_to_water
         end as depth_to_water,
         'metro' as source
-    from {{ ref('stg_metro_water_depth') }}
+    from {{ ref('stg_metro_water_levels') }}
 ),
 
 sems_data as (
@@ -33,7 +33,7 @@ sems_data as (
             else dtgw
         end as depth_to_water,
         'sems' as source
-    from {{ ref('stg_fact_sems_water_depth') }}
+    from {{ ref('stg_fact_sems_water_levels') }}
     where water_levels_read_date < cast('2019-01-02' as date)
 ),
 
