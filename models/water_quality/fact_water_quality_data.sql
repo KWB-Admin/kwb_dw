@@ -31,31 +31,12 @@ with
         from {{ ref("stg_bsk_lab_results") }}
     ),
 
-    eurofins_pdf_results as (
-        select
-            state_well_number,
-            null as sample_id,
-            sample_date,
-            null as analysis_method,
-            'Eurofins' as lab,
-            analyte,
-            result,
-            units,
-            min_detectable_limit,
-            max_report_limit
-
-        from {{ ref("stg_eurofins_lab_results_from_pdf") }}
-    ),
-
     wq_data as (
         select *
         from hist_digitized_data
         union
         select *
         from bsk_results
-        union
-        select *
-        from eurofins_pdf_results
     ),
 
     results_recast as (
