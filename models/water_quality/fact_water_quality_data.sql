@@ -16,6 +16,21 @@ with
         from {{ ref("stg_historical_water_quality_lab_results") }}
     ),
 
+    eurofins_pdf_results as (
+        select
+            state_well_number,
+            null as sample_id,
+            sample_date,
+            null as analysis_method,
+            'Eurofins' as lab,
+            analyte,
+            result,
+            units,
+            min_detectable_limit,
+            max_report_limit
+        from {{ ref("stg_eurofins_lab_results_from_pdf") }}
+    ),
+
     bsk_results as (
         select
             state_well_number,
@@ -37,6 +52,9 @@ with
         union
         select *
         from bsk_results
+        union
+        select *
+        from eurofins_pdf_results
     ),
 
     results_recast as (
@@ -75,10 +93,7 @@ with
             quantitative_result,
             units,
             min_detectable_limit,
-            max_report_limit as maximum_contaminant_limit,
-            row_number() over (
-                partition by state_well_number, sample_date, analyte
-            ) as row_num
+            max_report_limit as maximum_contaminant_limit
         from results_recast
     )
 
@@ -95,4 +110,3 @@ select
     min_detectable_limit,
     maximum_contaminant_limit
 from final
-where row_num = 1
