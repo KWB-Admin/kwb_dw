@@ -93,7 +93,8 @@ with
             quantitative_result,
             units,
             min_detectable_limit,
-            max_report_limit as maximum_contaminant_limit
+            max_report_limit as maximum_contaminant_limit,
+            row_number() over(partition by state_well_number, sample_date, analyte) as row_num
         from results_recast
     )
 
@@ -110,3 +111,4 @@ select
     min_detectable_limit,
     maximum_contaminant_limit
 from final
+where row_num = 1
