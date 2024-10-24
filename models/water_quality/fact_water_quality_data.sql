@@ -71,7 +71,7 @@ with
             max_report_limit,
             case
                 when result = 'ND'
-                then 0.0
+                then null
                 when result like '<%'
                 then cast(trim(translate(result, '<', '')) as real)
                 when result = 'No Obs Odor'
@@ -94,7 +94,9 @@ with
             units,
             min_detectable_limit,
             max_report_limit as maximum_contaminant_limit,
-            row_number() over(partition by state_well_number, sample_date, analyte) as row_num
+            row_number() over (
+                partition by state_well_number, sample_date, analyte
+            ) as row_num
         from results_recast
     )
 
