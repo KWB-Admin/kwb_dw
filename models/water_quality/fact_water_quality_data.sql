@@ -64,7 +64,15 @@ with
             sample_date,
             analysis_method,
             lab,
-            analyte,
+            case
+                when analyte like '%NO3%'
+                then 'Nitrate as NO3'
+                when analyte like '%rsenic%'
+                then 'Arsenic'
+                when analyte like 'Total Dis%olved Solids%'
+                then 'Total Dissolved Solids'
+                else analyte
+            end as analyte,
             result,
             units,
             min_detectable_limit,
