@@ -61,3 +61,21 @@ models:
       - name: ground_water_elevetion
         description: Ground level - depth to water, measured in feet
         data_type: real
+
+  - name: monthly_grazing
+    columns:
+      - name: grazer
+        description: name of grazing company
+        data_type: text
+      - name: reporting_date
+        description: date which grazing numbers were reported from Jim Jones
+        data_type: date
+      - name: area
+        description: area of KWB in which animals grazed
+        data_type: text
+      - name: number_of_animal_units
+        description: count of grazing animals in area for given time period
+        data_type: int
+      - name: comments
+        description: comment given by grazer on operations for given area at given time
+        data_type: text
