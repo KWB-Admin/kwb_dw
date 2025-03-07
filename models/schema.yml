@@ -79,3 +79,13 @@ models:
       - name: comments
         description: comment given by grazer on operations for given area at given time
         data_type: text
+  
+  - name: rolling_twelve_month_grazing_totals
+    columns:
+      - name: reporting_date
+        description: date of reporting; days within a one week lag are wrapped up into this date
+        data_type: date
+      - name: total
+        description: number of grazing animals on property for given date, regardless of area/grazer
+        data_type: number
+      
