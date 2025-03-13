@@ -79,7 +79,7 @@ models:
       - name: comments
         description: comment given by grazer on operations for given area at given time
         data_type: text
-  
+
   - name: rolling_twelve_month_grazing_totals
     columns:
       - name: reporting_date
@@ -88,4 +88,36 @@ models:
       - name: total
         description: number of grazing animals on property for given date, regardless of area/grazer
         data_type: number
-      
+  - name: fact_rainfall
+    columns:
+      - name: gaugeid
+        description: well number used to identify location of rain gauge
+        data_type: text
+        data_tests:
+          - not_null
+      - name: reading_date
+        description: date on which reading was done
+        data_type: date
+        data_tests:
+          - not_null
+      - name: measurement
+        description: measured in inches
+        data_type: real
+        data_tests:
+          - not_null
+    description: "fact table showing rainfall data gathered from two sources: historically from a field maps app going from 2015 to 3/13/2025, and currently from a survey123 survey from 3/13/2025 - today."
+  - name: water_year_rainfall
+    description: aggregate view showing total rainfall in water year (oct-sep) per gauge
+    columns:
+      - name: gaugeid
+        description: well number associated with gauge location
+        data_type: text
+      - name: water_year_total
+        description: sum of rainfall in water year, units are inches
+        data_type: numeric
+  - name: water_year
+    description: calendar of dates for a given water year. These run from October to September and the year number is the one it ends on. So for 2025 the water year would be October 1, 2024 to September 30, 2025
+    columns:
+      - name: water_calendar_date
+        description: date in water year
+        data_type: date
