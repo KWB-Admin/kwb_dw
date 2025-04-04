@@ -1,53 +1,10 @@
 version: 2
 
 sources:
-  - name: facilities_ops
+  - name: agol
     database: kwb  
-    schema: facilities_ops  
+    schema: agol  
     tables:
-        - name: basins
-          description: Table containing recharge basin information
-          columns:
-            - name: id 
-              data_type: bigint
-            - name: date_added 
-              data_type: date
-            - name: basin_id 
-              data_type: text
-              description: Alphanumeric ID used by Operations, Primary Key
-            - name: construction_year 
-              data_type: integer
-              description: Year recharge basin was contructed
-            - name: acres 
-              data_type: real
-              description: Area in acres of basin
-            - name: surface_elevation 
-              data_type: real
-            - name: sector 
-              data_type: text
-            - name: program 
-              data_type: text
-
-        - name: grazing_zones
-          columns:
-            - name: zone_name
-              data_type: text
-            - name: zone_desc
-              data_type: text
-            - name: acres
-              data_type: real
-
-        - name: pump_stations
-          columns:
-            - name: pump_station_name
-              data_type: text
-            - name: pump_horsepower
-              data_type: real
-            - name: lat
-              data_type: real
-            - name: lon
-              data_type: real
-
         - name: staff
           columns:
             - name: first_name
@@ -117,18 +74,8 @@ sources:
             - name: comments
               data_type: text
 
-        - name: fact_rainfall
-          columns:
-            - name: well
-              data_type: text
-            - name: day
-              data_type: integer
-            - name: month
-              data_type: integer
-            - name: year
-              data_type: integer
-            - name: rain_measurement
-              data_type: double precision
+        - name: fact_rainfall_survey
+        - name: historic_field_maps_rainfall
 
 
   - name: water_quality

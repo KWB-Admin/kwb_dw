@@ -3,7 +3,7 @@
 with
     grazing_numbers_raw as (
         select reporting_date, sum(number_of_animal_units) as "total"
-        from facilities_ops.fact_grazing
+        from {{ source("agol", "fact_grazing") }}
         group by 1
         order by 1 desc
         limit 12
