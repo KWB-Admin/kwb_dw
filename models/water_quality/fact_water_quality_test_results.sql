@@ -13,7 +13,7 @@ with
             units,
             cast(null as real) as min_detectable_limit,
             cast(maximum_contaminant_limit as real) as max_report_limit
-        from {{ ref("stg_historical_water_quality_lab_results") }}
+        from {{ source("water_quality", "historical_water_quality_lab_results") }}
     ),
 
     eurofins_pdf_results as (
@@ -28,7 +28,7 @@ with
             units,
             min_detectable_limit,
             max_report_limit
-        from {{ ref("stg_eurofins_lab_results_from_pdf") }}
+        from {{ source("water_quality", "eurofins_lab_results_from_pdfs") }}
     ),
 
     bsk_results as (
@@ -43,7 +43,7 @@ with
             units,
             min_detectable_limit,
             max_report_limit
-        from {{ ref("stg_bsk_lab_results") }}
+        from {{ source("water_quality", "bsk_lab_results") }}
     ),
 
     wq_data as (

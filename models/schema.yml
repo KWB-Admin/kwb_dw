@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: fact_water_quality_data
+  - name: fact_water_quality_test_results
     columns:
       - name: state_well_number
         data_type: text
@@ -42,7 +42,7 @@ models:
         data_type: real
         description: Maximum amount of analyte allowed in sample to be allowed for consumption
 
-  - name: fact_historical_water_levels
+  - name: fact_monitoring_water_levels
     description: Historical water levels
     columns:
       - name: state_well_number
@@ -88,7 +88,7 @@ models:
       - name: total
         description: number of grazing animals on property for given date, regardless of area/grazer
         data_type: number
-  - name: fact_rainfall
+  - name: fact_rainfall_measurements
     columns:
       - name: gaugeid
         description: well number used to identify location of rain gauge

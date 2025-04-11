@@ -10,7 +10,7 @@ with
     )
 
 select gaugeid, round(sum(measurement::numeric), 2) as water_year_total
-from {{ ref("fact_rainfall") }}, water_year
+from {{ ref("fact_rainfall_measurements") }}, water_year
 where reading_date >= water_year_start and reading_date <= water_year_end
 group by gaugeid
 order by gaugeid

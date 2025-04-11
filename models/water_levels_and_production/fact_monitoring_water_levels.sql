@@ -4,7 +4,7 @@ with
     mon_well as (
         select
             state_well_num as state_well_number, ground_level, top_screen, bottom_screen
-        from {{ ref("stg_dim_wells") }}
+        from {{ source("agol", "wells") }}
         where well_type = 'Monitoring' and status = 'Active'
     ),
 
@@ -16,7 +16,7 @@ with
                 when depth_to_water > 400 then null else depth_to_water
             end as depth_to_water,
             'metro' as source
-        from {{ ref("stg_metro_water_levels") }}
+        from {{ source("kcwa", "metro_water_levels_post_2020") }}
     ),
 
     sems_data as (
@@ -27,7 +27,7 @@ with
                 when dtgw > 400 then null when dtgw < 0 then null else dtgw
             end as depth_to_water,
             'sems' as source
-        from {{ ref("stg_fact_sems_water_levels") }}
+        from {{ source("kcwa", "historical_sems_water_levels_pre_2020") }}
         where water_levels_read_date < cast('2019-01-02' as date)
     ),
 
