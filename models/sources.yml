@@ -5,17 +5,6 @@ sources:
     database: kwb  
     schema: agol  
     tables:
-        - name: staff
-          columns:
-            - name: first_name
-              data_type: text
-            - name: last_name
-              data_type: text
-            - name: phone_number
-              data_type: text
-            - name: email
-              data_type: text
-
         - name: wells
           columns:
             - name: id
@@ -77,6 +66,22 @@ sources:
         - name: fact_rainfall_survey
         - name: historic_field_maps_rainfall
 
+  - name: grazing
+    database: kwb  
+    schema: grazing  
+    tables:
+        - name: fact_grazing
+          columns:
+            - name: grazer
+              data_type: text
+            - name: reporting_date
+              data_type: date
+            - name: area
+              data_type: text
+            - name: number_of_animal_units
+              data_type: integer
+            - name: comments
+              data_type: text
 
   - name: water_quality
     database: kwb  
