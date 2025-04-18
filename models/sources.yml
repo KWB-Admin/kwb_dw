@@ -149,5 +149,21 @@ sources:
               data_type: date
             - name: depth_to_water
               data_type: real
-
-
+  - name: dwr
+    database: kwb
+    schema: dwr
+    tables:
+        - name: fact_extensometer_readings
+          columns:
+          - name: reading_timestamp
+            data_type: timestamp
+          - name: measurement
+            data_type: real
+        - name: historical_extensometer_readings
+          columns:
+          - name: reading_date
+            data_type: date
+          - name: net_change
+            data_type: real
+          - name: spacial_corrections_and_comments
+            data_type: text
