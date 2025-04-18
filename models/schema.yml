@@ -121,3 +121,102 @@ models:
       - name: water_calendar_date
         description: date in water year
         data_type: date
+  - name: stg_historical_sems_gw_levels_pre_2020
+    description: Staging table for historical gw water levels pre-2019.
+    columns:
+      - name: state_well_number
+        description: state well number
+        data_type: text
+      - name: reading_date
+        description: date measurement was taken
+        data_type: date
+      - name: depth_to_water
+        description: depth to ground water from top of well.
+        data_type: real
+      - name: source
+        description: "Since this data comes from the KCWA database SEMS, this is set to SEMS (note: SEMS is probably sunsetted by 2026)."
+        data_type: text
+  - name: stg_metro_gw_levels_post_2020
+    description: Staging table for historical gw water levels post 2020 coming from metro.
+    columns:
+      - name: state_well_number
+        description: state well number
+        data_type: text
+      - name: reading_date
+        description: date measurement was taken
+        data_type: date
+      - name: depth_to_water
+        description: depth to ground water from top of well.
+        data_type: real
+      - name: source
+        description: Since this data comes from the Metro, this is set to Metro.
+        data_type: text
+  - name: stg_bsk_lab_results
+    description: Staging table for lab resulst from BSK.
+    columns:
+      - name: state_well_number
+        data_type: text
+      - name: sample_id
+        data_type: text
+      - name: sample_date
+        data_type: date
+      - name: analysis_method
+        data_type: text
+      - name: lab
+        data_type: text
+      - name: analyte
+        data_type: text
+      - name: result
+        data_type: text
+      - name: units
+        data_type: text
+      - name: min_detectable_limit
+        data_type: real
+      - name: max_report_limit
+        data_type: real
+  - name: stg_historical_eurofins_results_from_pdfs
+    description: Staging table for historical lab results from Eurofins, extracted from pdfs using OCR.
+    columns:
+      - name: state_well_number
+        data_type: text
+      - name: sample_id
+        data_type: text
+      - name: sample_date
+        data_type: date
+      - name: analysis_method
+        data_type: text
+      - name: lab
+        data_type: text
+      - name: analyte
+        data_type: text
+      - name: result
+        data_type: text
+      - name: units
+        data_type: text
+      - name: min_detectable_limit
+        data_type: real
+      - name: max_report_limit
+        data_type: real
+  - name: stg_historical_lab_results
+    description: Staging table for historical lab results compiled in Excel back in 2023. There is some overlap with the eurofins table but this is accounted for via deduping.
+    columns:
+      - name: state_well_number
+        data_type: text
+      - name: sample_id
+        data_type: text
+      - name: sample_date
+        data_type: date
+      - name: analysis_method
+        data_type: text
+      - name: lab
+        data_type: text
+      - name: analyte
+        data_type: text
+      - name: result
+        data_type: text
+      - name: units
+        data_type: text
+      - name: min_detectable_limit
+        data_type: real
+      - name: max_report_limit
+        data_type: real
