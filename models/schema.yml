@@ -220,3 +220,38 @@ models:
         data_type: real
       - name: max_report_limit
         data_type: real
+  - name: stg_historical_ext_readings
+    description: Staging for historical extensometer readings. One day per month per reading
+    columns:
+      - name: reading_date
+        description: date of extensometer reading
+        data_type: date
+      - name: measurement
+        description: net change in elevation (ft)
+        data_type: real
+  - name: stg_fact_ext_readings
+    description: Staging table for extensometer readings, provided by DWR via HydroVu
+    columns:
+      - name: reading_timestamp
+        data_type: timestamp without time zone
+      - name: measurement
+        data_type: real
+      - name: reading_date
+        description: date readings were collected
+        data_type: date
+        data_tests:
+          - not_null
+      - name: daily_average_measurement
+        description: average daily measurements of net change
+        data_type: numeric
+        data_tests:
+          - not_null
+  - name: fact_extensometer_readings
+    description: combined table showing historical extensometer data with HyrdoVu provided data
+    columns:
+      - name: reading_date
+        description: date of readings
+        data_type: date
+      - name: measurement
+        description: daily averages of changes in elevation (ft)
+        data_type: real
