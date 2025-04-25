@@ -149,6 +149,7 @@ sources:
               data_type: date
             - name: depth_to_water
               data_type: real
+        - name: metro_recovery_data
   - name: dwr
     database: kwb
     schema: dwr
