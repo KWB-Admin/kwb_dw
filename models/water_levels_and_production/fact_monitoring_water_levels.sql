@@ -3,7 +3,11 @@
 with
     mon_well as (
         select
-            state_well_num as state_well_number, ground_level, top_screen, bottom_screen
+            state_well_num as state_well_number,
+            ground_level,
+            reference_elevation,
+            top_screen,
+            bottom_screen
         from {{ source("agol", "wells") }}
         where well_type = 'Monitoring' and status = 'Active'
     ),
@@ -25,8 +29,15 @@ with
             mon_well.state_well_number,
             cast(reading_date as date) as reading_date,
             mon_well.ground_level,
+            mon_well.reference_elevation,
             depth_to_water,
-            coalesce(mon_well.ground_level - depth_to_water) as ground_water_elevation,
+            coalesce(
+                case 
+                when mon_well.reference_elevation is null 
+                then mon_well.ground_level - depth_to_water
+                else mon_well.reference_elevation - depth_to_water
+                end
+            ) as ground_water_elevation,
             source
         from mon_well
         left join
