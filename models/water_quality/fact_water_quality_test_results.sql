@@ -26,8 +26,7 @@ with
         select
             *,
             rank() over (
-                partition by state_well_number, sample_date, analyte
-                order by rank
+                partition by state_well_number, sample_date, analyte order by rank
             ) as src_rank
         from complete_wq_data
     )
