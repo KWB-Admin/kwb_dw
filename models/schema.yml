@@ -1,47 +1,6 @@
 version: 2
 
 models:
-  - name: fact_water_quality_test_results
-    columns:
-      - name: state_well_number
-        data_type: text
-        data_tests:
-          - not_null
-      - name: sample_id
-        data_type: text
-        description: ID of sample (provided and used by Lab)
-      - name: sample_date
-        data_type: date
-        description: Date water was sampled
-        data_tests:
-          - not_null
-      - name: test_method
-        data_type: text
-        description: Method used to test sample for analyte
-      - name: lab
-        data_type: text
-        description: Lab that conducted the test
-      - name: analyte
-        data_type: text
-        description: Consituent (organic, metal, etc) tested for
-        data_tests:
-          - not_null
-      - name: raw_lab_result
-        data_type: text
-        description: Result as provided by lab (contains mixed type)
-      - name: quantitative_result
-        data_type: real
-        description: Numerical results casted into corrected type
-      - name: units
-        data_type: text
-        description: Unit of measurement used, different for each analyte
-      - name: min_detectable_limit
-        data_type: real
-        description: Minimum amount of analyte detectable in sample
-      - name: maximum_contaminant_limit
-        data_type: real
-        description: Maximum amount of analyte allowed in sample to be allowed for consumption
-
   - name: fact_monitoring_water_levels
     description: Historical water levels
     columns:
@@ -254,4 +213,46 @@ models:
         data_type: date
       - name: measurement
         description: daily averages of changes in elevation (ft)
+        data_type: real
+  - name: fact_water_quality_test_results
+    description: Lab results from both monitoring and recovery wells on KWB property
+    columns:
+      - name: state_well_number
+        description: Unique identifier of well
+        data_type: text
+        data_tests:
+          - not_null
+      - name: sample_date
+        description: Date water was sampled
+        data_type: date
+        data_tests:
+          - not_null
+      - name: sample_time
+        description: Time on date water was sampled
+        data_type: time without time zone
+      - name: lab
+        description: Lab that conducted the test
+        data_type: text
+      - name: lab_sample_id
+        description: id of sample, given by lab
+        data_type: text
+      - name: analyte
+        description: Consituent (organic, metal, etc) tested for
+        data_type: text
+        data_tests:
+          - not_null
+      - name: qualifier
+        description: Some results are described as being above or below an amount, using "<" or ">". This captures that feature.
+        data_type: text
+      - name: result
+        description: quantitative result of lab test
+        data_type: real
+      - name: qualitative_result
+        description: qualitative result, either "ND" if not detected or actually qualitative such as "No odor detected"
+        data_type: text
+      - name: units
+        description: Unit of measurement used, different for each analyte
+        data_type: text
+      - name: minimum_reportable_limit
+        description: Minimum limit at which result must be reported.
         data_type: real
