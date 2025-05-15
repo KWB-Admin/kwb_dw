@@ -4,19 +4,18 @@ with
     source as (
         select
             state_well_number,
+            collection_date::date as sample_date,
+            collection_time::time as sample_time,
             lab,
-            collection_date,
-            collection_time,
+            lab_sample_id,
             analyte,
             qualifier,
             result,
             qualitative_result,
             units,
-            minimum_reportable_limit,
-            maximum_contaminant_limit,
-            lab_sample_id
+            minimum_reportable_limit
         from {{ source("water_quality", "historical_water_quality_lab_results") }}
-        where bad_data_flag is null
+        where good_data_flag
     )
 
 select *

@@ -1,87 +1,48 @@
 {{ config(materialized="table") }}
 
 with
-    hist_digitized_data as (select * from {{ ref("stg_historical_lab_results") }}),
-
-    eurofins_pdf_results as (
-        select * from {{ ref("stg_historical_eurofins_results_from_pdfs") }}
+    historical_digitized_results as (
+        select *, 2 as rank from {{ ref("stg_historical_lab_results") }}
     ),
 
-    bsk_results as (select * from {{ ref("stg_bsk_lab_results") }}),
+    historical_eurofins_pdf_results as (
+        select *, 3 as rank from {{ ref("stg_historical_eurofins_results_from_pdfs") }}
+    ),
 
-    wq_data as (
+    bsk_results as (select *, 1 as rank from {{ ref("stg_bsk_lab_results") }}),
+
+    complete_wq_data as (
         select *
-        from hist_digitized_data
+        from historical_digitized_results
+        union
+        select *
+        from historical_eurofins_pdf_results
         union
         select *
         from bsk_results
-        union
-        select *
-        from eurofins_pdf_results
-    ),
-
-    results_recast as (
-        select
-            state_well_number,
-            sample_id,
-            sample_date,
-            analysis_method,
-            lab,
-            case
-                when analyte like '%NO3%'
-                then 'Nitrate as NO3'
-                when analyte like '%rsenic%'
-                then 'Arsenic'
-                when analyte like 'Total Dis%olved Solids%'
-                then 'Total Dissolved Solids'
-                else analyte
-            end as analyte,
-            result,
-            units,
-            min_detectable_limit,
-            max_report_limit,
-            case
-                when result = 'ND'
-                then null
-                when result like '<%'
-                then cast(trim(translate(result, '<', '')) as real)
-                when result = 'No Obs Odor'
-                then null
-                else cast(result as real)
-            end as quantitative_result
-        from wq_data
     ),
 
     final as (
         select
-            state_well_number,
-            sample_id,
-            sample_date,
-            analysis_method,
-            lab,
-            analyte,
-            result as raw_lab_result,
-            quantitative_result,
-            units,
-            min_detectable_limit,
-            max_report_limit as maximum_contaminant_limit,
-            row_number() over (
-                partition by state_well_number, sample_date, analyte
-            ) as row_num
-        from results_recast
+            *,
+            rank() over (
+                partition by state_well_number, sample_date, analyte, rank
+                order by state_well_number, sample_date, analyte
+            ) as src_rank
+        from complete_wq_data
     )
 
 select
     state_well_number,
-    sample_id,
     sample_date,
-    analysis_method,
+    sample_time,
     lab,
+    lab_sample_id,
     analyte,
-    raw_lab_result,
-    quantitative_result,
+    qualifier,
+    result,
+    qualitative_result,
     units,
-    min_detectable_limit,
-    maximum_contaminant_limit
+    minimum_reportable_limit
 from final
-where row_num = 1
+where src_rank = 1

@@ -32,10 +32,10 @@ with
             mon_well.reference_elevation,
             depth_to_water,
             coalesce(
-                case 
-                when mon_well.reference_elevation is null 
-                then mon_well.ground_level - depth_to_water
-                else mon_well.reference_elevation - depth_to_water
+                case
+                    when mon_well.reference_elevation is null
+                    then mon_well.ground_level - depth_to_water
+                    else mon_well.reference_elevation - depth_to_water
                 end
             ) as ground_water_elevation,
             source

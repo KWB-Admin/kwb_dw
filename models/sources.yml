@@ -110,7 +110,7 @@ sources:
             - name: lab_comment
               data_type: text
         - name: bsk_lab_results
-        - name: eurofins_lab_results_from_pdfs
+        - name: historical_eurofins_water_quality_results_from_pdfs
 
   - name: kcwa
     database: kwb  
